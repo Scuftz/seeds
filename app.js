@@ -3,7 +3,8 @@ const connectDB = require('./config/db');
 var cors = require('cors');
 
 // INCORRECT VALUE CURRENTLY
-const books = require('./routes/api/books');
+const users = require('./routes/api/users');
+const articles = require('./routes/api/articles');
 
 const app = express();
 
@@ -19,7 +20,8 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('Hello world!'));
 
 // use Routes
-app.use('/api/books', books);
+app.use('/api/articles', articles);
+app.use('/api/users', users);
 
 const port = process.env.PORT || 8082;
 
