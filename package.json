@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "app": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd seeds-app && npm install && npm run build"
   },
   "repository": {
     "type": "git",
