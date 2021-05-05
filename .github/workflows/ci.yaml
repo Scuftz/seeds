@@ -24,10 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Install react-scripts
-        run: npm i react-scripts
+        run: npm install --prefix seeds-app
 
       - name: Run the tests
         run: npm test --prefix seeds-app
