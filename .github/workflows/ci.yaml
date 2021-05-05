@@ -27,10 +27,10 @@ jobs:
         run: npm install
 
       - name: Run the tests
-        run: npm test
+        run: npm test --prefix seeds-app
 
       - name: Run the linter
-        run: npm run lint
+        run: npm run lint --prefix seeds-app
 
       - name: Build
-        run: npm run build
+        run: npm run build --prefix seeds-app
