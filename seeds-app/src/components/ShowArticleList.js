@@ -45,12 +45,39 @@ class ShowArticleList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Articles List</h2>
+              <h2 className="display-4 text-center">Moderator</h2>
             </div>
 
             <div className="col-md-11">
               <Link to="/submit-article" className="btn btn-outline-warning float-right">
-                + Add New Article
+                + Submit An Article
+              </Link>
+              <br />
+              <br />
+              <hr />
+            </div>
+
+            <div className="col-md-11">
+              <Link to="/submit-article" className="btn btn-outline-warning float-right">
+                + Search for Article
+              </Link>
+              <br />
+              <br />
+              <hr />
+            </div>
+
+            <div className="col-md-11">
+              <Link to="/submit-article" className="btn btn-outline-warning float-right">
+                + Moderate an Article
+              </Link>
+              <br />
+              <br />
+              <hr />
+            </div>
+
+            <div className="col-md-11">
+              <Link to="/submit-article" className="btn btn-outline-warning float-right">
+                + Analyse Article
               </Link>
               <br />
               <br />

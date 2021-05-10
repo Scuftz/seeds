@@ -98,9 +98,9 @@ class showArticleDetails extends Component {
             </div>
             <br />
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Article's Record</h1>
+              <h1 className="display-4 text-center">Submitted Article</h1>
               <p className="lead text-center">
-                  View Article's Info
+                  Accept or Decline the Article
               </p>
               <hr /> <br />
             </div>
@@ -111,12 +111,12 @@ class showArticleDetails extends Component {
 
           <div className="row">
             <div className="col-md-6">
-              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,article._id)}>Delete Article</button><br />
+              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,article._id)}>Decline Article</button><br />
             </div>
 
             <div className="col-md-6">
               <Link to={`/edit-article/${article._id}`} className="btn btn-outline-info btn-lg btn-block">
-                    Edit Article
+                    Accept Article
               </Link>
               <br />
             </div>

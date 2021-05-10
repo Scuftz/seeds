@@ -22,7 +22,10 @@ router.get('/', (req, res) => {
   // @description Get single article by id
   // @access Public
   router.get('/:id', (req, res) => {
-    Article.findById(req.params.id)
+    //Article.findById(req.params.id)
+    //Article.find( { "process_status": { $eq: "PendingModeration" } } )
+    let typeRequest = req.params.id;
+    Article.find( { "process_status": { $eq: typeRequest } } )
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });
