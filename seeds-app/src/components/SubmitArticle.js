@@ -8,7 +8,6 @@ class SubmitArticle extends Component {
   constructor() {
     super();
     this.state = {
-      article_id: '',
       title:'',
       author:'',
       year_of_pub:'',
@@ -29,7 +28,6 @@ class SubmitArticle extends Component {
     e.preventDefault();
 
     const data = {
-      article_id: this.state.article_id,
       title: this.state.title,
       author: this.state.author,
       year_of_pub: this.state.year_of_pub,
@@ -38,14 +36,13 @@ class SubmitArticle extends Component {
       doi: this.state.doi,
       process_status: this.state.process_status,
       article_text: this.state.article_text,
-      keywords: this.state.article_id.keywords
+      keywords: this.state.keywords
     };
 
     axios
       .post('http://localhost:8082/api/articles', data)
       .then(res => {
         this.setState({
-          article_id: '',
           title:'',
           author:'',
           year_of_pub:'',
@@ -81,7 +78,7 @@ class SubmitArticle extends Component {
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='number'
                     placeholder='Article ID'
@@ -90,7 +87,7 @@ class SubmitArticle extends Component {
                     value={this.state.article_id}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
                 <br />
 
                 <div className='form-group'>

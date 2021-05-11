@@ -7,7 +7,6 @@ class UpdateArticleInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        article_id: '',
         title:'',
         author:'',
         year_of_pub:'',
@@ -51,7 +50,6 @@ class UpdateArticleInfo extends Component {
     e.preventDefault();
 
     const data = {
-      article_id: this.state.article_id,
       title: this.state.title,
       author: this.state.author,
       year_of_pub: this.state.year_of_pub,
@@ -66,7 +64,8 @@ class UpdateArticleInfo extends Component {
     axios
       .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
       .then(res => {
-        this.props.history.push('/show-article/'+this.props.match.params.id);
+        // this.props.history.push('/show-article/'+this.props.match.params.id);
+        this.props.history.push('/analyst');
       })
       .catch(err => {
         console.log("Error in UpdateArticleInfo!");

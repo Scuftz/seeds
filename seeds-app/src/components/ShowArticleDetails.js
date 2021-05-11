@@ -30,7 +30,7 @@ class showArticleDetails extends Component {
     axios
       .delete('http://localhost:8082/api/articles/'+id)
       .then(res => {
-        this.props.history.push("/");
+        this.props.history.push("/moderation");
       })
       .catch(err => {
         console.log("Error form ShowArticleDetails_deleteClick");
