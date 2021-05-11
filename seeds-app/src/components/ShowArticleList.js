@@ -14,7 +14,7 @@ class ShowArticleList extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles')
+      .get('http://localhost:8082/api/articles/PendingModeration')
       .then(res => {
         this.setState({
           articles: res.data
@@ -46,45 +46,28 @@ class ShowArticleList extends Component {
             <div className="col-md-12">
               <br />
               <h2 className="display-4 text-center">Moderator</h2>
+              <br/>
             </div>
 
-            <div className="col-md-11">
-              <Link to="/submit-article" className="btn btn-outline-warning float-right">
-                + Submit An Article
-              </Link>
-              <br />
-              <br />
-              <hr />
-            </div>
+            <div className="rowC">
+                <Link to="/submit-article" className="btn btn-outline-warning">
+                  Submit An Article
+                </Link>
 
-            <div className="col-md-11">
-              <Link to="/submit-article" className="btn btn-outline-warning float-right">
-                + Search for Article
-              </Link>
-              <br />
-              <br />
-              <hr />
-            </div>
+                <Link to="/search-article" className="btn btn-outline-warning">
+                  Search for Article
+                </Link>
 
-            <div className="col-md-11">
-              <Link to="/submit-article" className="btn btn-outline-warning float-right">
-                + Moderate an Article
-              </Link>
-              <br />
-              <br />
-              <hr />
-            </div>
+                <Link to="/submit-article" className="btn btn-outline-warning">
+                  Moderation
+                </Link>
 
-            <div className="col-md-11">
-              <Link to="/submit-article" className="btn btn-outline-warning float-right">
-                + Analyse Article
-              </Link>
-              <br />
-              <br />
-              <hr />
+                <Link to="/submit-article" className="btn btn-outline-warning">
+                  Analyst
+                </Link>
             </div>
-
           </div>
+          <br/>
 
           <div className="list">
                 {articleList}

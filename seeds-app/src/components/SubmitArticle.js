@@ -69,9 +69,9 @@ class SubmitArticle extends Component {
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Add Article</h1>
+              <h1 className="display-4 text-center">Submit Article</h1>
               <p className="lead text-center">
-                  Submit Article
+                  Add Biblio Details
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
