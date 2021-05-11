@@ -31,6 +31,12 @@ const ArticleSchema = new mongoose.Schema({
   },
   process_status: {
     type: String,
+  },
+  article_text: {
+    type: String,
+  },
+  keywords: {
+    type: String
   }
 });
 

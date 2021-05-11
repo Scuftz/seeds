@@ -14,7 +14,7 @@ class showArticleDetails extends Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/articles/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
       .then(res => {
         // console.log("Print-showArticleDetails-API-response: " + res.data);
         this.setState({
@@ -92,8 +92,8 @@ class showArticleDetails extends Component {
           <div className="row">
             <div className="col-md-10 m-auto">
               <br /> <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Article List
+              <Link to="/moderation" className="btn btn-outline-warning float-left">
+                  Show Moderation List
               </Link>
             </div>
             <br />

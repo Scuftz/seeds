@@ -21,11 +21,17 @@ router.get('/', (req, res) => {
   // @route GET api/articles/:id
   // @description Get single article by id
   // @access Public
-  router.get('/:id', (req, res) => {
+  router.get('/:status', (req, res) => {
     //Article.findById(req.params.id)
     //Article.find( { "process_status": { $eq: "PendingModeration" } } )
-    let typeRequest = req.params.id;
+    let typeRequest = req.params.status;
     Article.find( { "process_status": { $eq: typeRequest } } )
+      .then(article => res.json(article))
+      .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
+  });
+
+  router.get('/article/:id', (req, res) => {
+    Article.findById(req.params.id)
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });

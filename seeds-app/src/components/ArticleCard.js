@@ -11,7 +11,11 @@ const ArticleCard = (props) => {
             <div className="desc">
                 <h2>
                     <Link to={`/show-article/${article._id}`}>
-                        { article.title }
+                        { "Moderation" }
+                    </Link>
+                    <br/>
+                    <Link to={`/edit-article/${article._id}`}>
+                        { "Analyst" }
                     </Link>
                 </h2>
                 <h3>{article.author}</h3>

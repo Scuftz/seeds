@@ -14,7 +14,9 @@ class UpdateArticleInfo extends Component {
         journal_name:'',
         volume_number:'',
         doi:'',
-        process_status:''
+        process_status:'',
+        article_text:'',
+        keywords:''
     };
   }
 
@@ -31,7 +33,9 @@ class UpdateArticleInfo extends Component {
           journal_name: res.data.journal_name,
           volume_number: res.data.volume_number,
           doi: res.data.doi,
-          process_status: res.data.process_status
+          process_status: res.data.process_status,
+          article_text: res.data.article_text,
+          keywords: res.data.keywords
         })
       })
       .catch(err => {
@@ -54,7 +58,9 @@ class UpdateArticleInfo extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: this.state.process_status
+      process_status: this.state.process_status,
+      article_text: this.state.article_text,
+      keywords: this.state.keywords
     };
 
     axios
@@ -75,98 +81,52 @@ class UpdateArticleInfo extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Article List
+              <Link to="/analyst" className="btn btn-outline-warning float-left">
+                  Return to Analyst
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Article</h1>
+              <h1 className="display-4 text-center">Publish Article</h1>
               <p className="lead text-center">
-                  Update Article's Info
+                  Add Keywords and Article Text
               </p>
             </div>
           </div>
 
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
+
             <div className='form-group'>
               <input
                 type='text'
-                placeholder='Title of Article'
-                name='title'
+                placeholder='Keywords'
+                name='keywords'
                 className='form-control'
-                value={this.state.title}
+                value={this.state.keywords}
                 onChange={this.onChange}
               />
             </div>
             <br />
 
             <div className='form-group'>
-            <label htmlFor="author">Author</label>
-              <input
-                type='text'
-                placeholder='Author'
-                name='author'
+              <textarea
+                placeholder='Article Text'
+                name='article_text'
                 className='form-control'
-                value={this.state.author}
+                value = {this.state.article_text}
                 onChange={this.onChange}
               />
-            </div>
 
-            <div className='form-group'>
-              <input
-                type='number'
-                placeholder='Year of Publication'
-                name='year_of_pub'
-                className='form-control'
-                value={this.state.year_of_pub}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <div className='form-group'>
-              <input
+              {/* <input
                 type='text'
-                placeholder='Journal Name'
-                name='journal_name'
+                placeholder='Article Text'
+                name='article_text'
                 className='form-control'
-                value={this.state.journal_name}
+                value={this.state.article_text}
                 onChange={this.onChange}
-              />
+              /> */}
             </div>
-
-            <div className='form-group'>
-              <input
-                type='number'
-                placeholder='Volume Number'
-                name='volume_number'
-                className='form-control'
-                value={this.state.volume_number}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className='form-group'>
-              <input
-                type='text'
-                placeholder='DOI'
-                name='doi'
-                className='form-control'
-                value={this.state.doi}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className='form-group'>
-              <input
-                type='text'
-                placeholder='Process Status'
-                name='process_status'
-                className='form-control'
-                value={this.state.process_status}
-                onChange={this.onChange}
-              />
-            </div>
-
-            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Article</button>
+            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Publish Article</button>
             </form>
           </div>
 

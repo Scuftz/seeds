@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ArticleCard from './ArticleCard';
 
-class ShowArticleList extends Component {
+class Analyst extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class ShowArticleList extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/PendingModeration')
+      .get('http://localhost:8082/api/articles/PendingAnalyst')
       .then(res => {
         this.setState({
           articles: res.data
@@ -45,7 +45,7 @@ class ShowArticleList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Moderator</h2>
+              <h2 className="display-4 text-center">Analyst</h2>
               <br/>
             </div>
 
@@ -78,4 +78,4 @@ class ShowArticleList extends Component {
   }
 }
 
-export default ShowArticleList;
+export default Analyst;

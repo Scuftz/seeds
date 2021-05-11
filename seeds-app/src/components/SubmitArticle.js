@@ -15,7 +15,9 @@ class SubmitArticle extends Component {
       journal_name:'',
       volume_number:'',
       doi:'',
-      process_status:''
+      process_status:'',
+      article_text:'',
+      keywords:''
     };
   }
 
@@ -34,7 +36,9 @@ class SubmitArticle extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: this.state.process_status
+      process_status: this.state.process_status,
+      article_text: this.state.article_text,
+      keywords: this.state.article_id.keywords
     };
 
     axios
@@ -48,7 +52,9 @@ class SubmitArticle extends Component {
           journal_name:'',
           volume_number:'',
           doi:'',
-          process_status:''
+          process_status:'',
+          article_text:'',
+          keywords:''
         })
         this.props.history.push('/');
       })
@@ -65,7 +71,7 @@ class SubmitArticle extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Article List
+                  Return to Search
               </Link>
             </div>
             <div className="col-md-8 m-auto">
