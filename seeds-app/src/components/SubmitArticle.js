@@ -34,7 +34,7 @@ class SubmitArticle extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: this.state.process_status,
+      process_status: "PendingModeration",
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };
@@ -153,7 +153,7 @@ class SubmitArticle extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='text'
                     placeholder='Process Status'
@@ -161,8 +161,8 @@ class SubmitArticle extends Component {
                     className='form-control'
                     value={this.state.process_status}
                     onChange={this.onChange}
-                  />
-                </div>
+                  /> */}
+                {/* </div> */}
                 <input
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4"

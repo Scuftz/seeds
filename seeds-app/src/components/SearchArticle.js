@@ -41,10 +41,9 @@ class SearchArticle extends Component {
             <div className="col-md-8 m-auto">
             </div>
             <div className="col-md-8 m-auto">
+              <br/>
               <h1 className="display-4 text-center">Search for an Article</h1>
-              <p className="lead text-center">
-                  Search by Keyword
-              </p>
+              <br/>
             </div>
           </div>
 
