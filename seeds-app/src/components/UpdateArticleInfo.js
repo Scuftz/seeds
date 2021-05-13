@@ -56,7 +56,7 @@ class UpdateArticleInfo extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: this.state.process_status,
+      process_status: "Live",//this.state.process_status,
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };

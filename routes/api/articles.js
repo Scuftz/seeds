@@ -1,3 +1,4 @@
+const { query } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
   });
   
   // @route GET api/articles/:id
-  // @description Get single article by id
+  // @description Get single article by status
   // @access Public
   router.get('/:status', (req, res) => {
     //Article.findById(req.params.id)
@@ -30,11 +31,48 @@ router.get('/', (req, res) => {
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });
 
+  // @route GET api/articles
+  // @description Get all articles
+  // @access Public
+   router.get('/search/:search', (req, res) => {
+    // router.get('/search/', (req, res) => {
+
+    // let typeRequest = req.params.search;
+    // Article.find( { "process_status": { $eq: typeRequest } } )
+    //   .then(article => res.json(article))
+    //   .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
+       
+    //  Article.find()
+    //  .then(articles => res.json(articles))
+    //  .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
+    
+    let word = req.params.search;    
+    let typeRequest = "Live";
+
+    Article.find({
+      $and: [
+        {"process_status": { $eq: typeRequest }},
+        {keywords: {$regex: word, $options: "$i"}}
+      ]
+    })
+    // Article.find({keywords: `${shiv}`}) //works for using a variable without regex
+    // Article.find({keywords: [shiv]}) //works for using a variable without regex
+    // Article.find({keywords: /Python/}) //works with regex with hard coded value
+    // Article.find({keywords: `/${shiv}/`}) //failed attempt at combining variable and regex
+    // query[name] = shiv;
+    // Article.find({query})
+      .then(article => res.json(article))
+      .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
+  });
+
+  //get article by id
   router.get('/article/:id', (req, res) => {
     Article.findById(req.params.id)
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });
+
+ 
   
   // @route GET api/articles
   // @description add/save article

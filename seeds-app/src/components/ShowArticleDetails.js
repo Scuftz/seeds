@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-class showArticleDetails extends Component {
+class ShowArticleDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class showArticleDetails extends Component {
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
+    console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
       .then(res => {
@@ -132,4 +132,4 @@ class showArticleDetails extends Component {
   }
 }
 
-export default showArticleDetails;
+export default ShowArticleDetails;
