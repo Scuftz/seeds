@@ -37,6 +37,31 @@ class ShowArticleDetails extends Component {
       })
   };
 
+  onAccept = e => {
+    e.preventDefault();
+
+    const data = {
+      title: this.state.title,
+      author: this.state.author,
+      year_of_pub: this.state.year_of_pub,
+      journal_name: this.state.journal_name,
+      volume_number: this.state.volume_number,
+      doi: this.state.doi,
+      process_status: "PendingAnalyst",//this.state.process_status,
+      article_text: this.state.article_text,
+      keywords: this.state.keywords
+    };
+
+    axios
+      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
+      .then(res => {
+        // this.props.history.push('/show-article/'+this.props.match.params.id);
+        this.props.history.push('/moderation');
+      })
+      .catch(err => {
+        console.log("Error in Accepting Article!");
+      })
+  };
 
   render() {
 
@@ -115,9 +140,10 @@ class ShowArticleDetails extends Component {
             </div>
 
             <div className="col-md-6">
-              <Link to={`/edit-article/${article._id}`} className="btn btn-outline-info btn-lg btn-block">
+              <button type="button" className="btn btn-outline-info btn-lg btn-block" onClick={this.onAccept}>Accept Article</button>
+              {/* <Link to={`/edit-article/${article._id}`} className="btn btn-outline-info btn-lg btn-block">
                     Accept Article
-              </Link>
+              </Link> */}
               <br />
             </div>
 
