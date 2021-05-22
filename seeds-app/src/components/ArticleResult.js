@@ -3,6 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ArticleCard from './ArticleCard';
+import ReactDOM from 'react-dom';
 
 
 class ArticleResult extends Component {
@@ -11,6 +12,7 @@ class ArticleResult extends Component {
     this.state = {
       articles: []
     };
+    this.btnClick = this.btnClick.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +30,10 @@ class ArticleResult extends Component {
       })
   };
   
+  btnClick(){
+    console.log("Buton click!");
+  };
+
   renderTableData() {
     const articles = this.state.articles;
     let articleList;
@@ -40,7 +46,7 @@ class ArticleResult extends Component {
         console.log("Start TableData");
         return (
            <tr key={title}>
-              <td>{title}</td>
+              <td><button onClick={() => this.btnClick}>{title}</button></td>
               <td>{author}</td>
               <td>{year_of_pub}</td>
               <td>{journal_name}</td>
