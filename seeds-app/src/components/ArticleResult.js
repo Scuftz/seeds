@@ -14,10 +14,6 @@ class ArticleResult extends Component {
   }
 
   componentDidMount() {
-    // let x = window.location.pathname;
-    // x = x.substring(x.lastIndexOf('/') + 1);
-
-    console.log("SHIVNEEL: " + this.props.match.params.id);
     axios
       // .get('http://localhost:8082/api/articles/search/Python')
       // .get('http://localhost:8082/api/articles/search/?asd=TDD') //add param from search bar
@@ -31,20 +27,51 @@ class ArticleResult extends Component {
         console.log('Error from ShowArticleList');
       })
   };
-
-
-  render() {
+  
+  renderTableData() {
     const articles = this.state.articles;
-    console.log("PrintArticle: " + articles);
     let articleList;
 
     if(!articles) {
       articleList = "there is no article record!";
     } else {
-      articleList = articles.map((article, k) =>
-        <ArticleCard article={article} key={k} />
-      );
+      return articles.map((article, k) => {
+        const { title, author, year_of_pub, journal_name, volume_number } = article
+        console.log("Start TableData");
+        return (
+           <tr key={title}>
+              <td>{title}</td>
+              <td>{author}</td>
+              <td>{year_of_pub}</td>
+              <td>{journal_name}</td>
+              <td>{volume_number}</td>
+           </tr>
+        )
+     }) 
     }
+  }
+
+  renderTableHeader() {
+    return(
+      [
+      <th key={"title"}>{"Title"}</th>,
+      <th key={"author"}>{"Author"}</th>,
+      <th key={"year"}>{"Year"}</th>,
+      <th key={"journal"}>{"Journal Name"}</th>,
+      <th key={"volume"}>{"Volume No."}</th>]
+    )}
+
+  render() {
+    // const articles = this.state.articles;
+    // let articleList;
+    // console.log("PrintArticle: " + articles);
+    // if(!articles) {
+    //   articleList = "there is no article record!";
+    // } else {
+    //   articleList = articles.map((article, k) =>
+    //     <ArticleCard article={article} key={k} />
+    //   );
+    // }
 
     return (
       <div className="ShowArticleList">
@@ -76,8 +103,14 @@ class ArticleResult extends Component {
           </div>
           <br/>
 
-          <div className="list">
-                {articleList}
+          <div className="tableList">
+              <table id="articles">
+                <tbody>
+                  <tr>{this.renderTableHeader()}</tr>
+                  {this.renderTableData()}
+                  {/* {articleList} */}
+                </tbody>
+              </table>
           </div>
         </div>
       </div>

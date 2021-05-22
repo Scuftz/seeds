@@ -32,20 +32,9 @@ router.get('/', (req, res) => {
   });
 
   // @route GET api/articles
-  // @description Get all articles
+  // @description Search for articles
   // @access Public
    router.get('/search/:search', (req, res) => {
-    // router.get('/search/', (req, res) => {
-
-    // let typeRequest = req.params.search;
-    // Article.find( { "process_status": { $eq: typeRequest } } )
-    //   .then(article => res.json(article))
-    //   .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
-       
-    //  Article.find()
-    //  .then(articles => res.json(articles))
-    //  .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
-    
     let word = req.params.search;    
     let typeRequest = "Live";
 
@@ -55,12 +44,6 @@ router.get('/', (req, res) => {
         {keywords: {$regex: word, $options: "$i"}}
       ]
     })
-    // Article.find({keywords: `${shiv}`}) //works for using a variable without regex
-    // Article.find({keywords: [shiv]}) //works for using a variable without regex
-    // Article.find({keywords: /Python/}) //works with regex with hard coded value
-    // Article.find({keywords: `/${shiv}/`}) //failed attempt at combining variable and regex
-    // query[name] = shiv;
-    // Article.find({query})
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });
