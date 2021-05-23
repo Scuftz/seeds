@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ArticleCard from './ArticleCard';
-import ReactDOM from 'react-dom';
+// import ArticleCard from './ArticleCard';
+// import ReactDOM from 'react-dom';
 
 
 class ArticleResult extends Component {
@@ -36,10 +36,10 @@ class ArticleResult extends Component {
 
   renderTableData() {
     const articles = this.state.articles;
-    let articleList;
+    // let articleList;
 
     if(!articles) {
-      articleList = "there is no article record!";
+      // articleList = "there is no article record!";
     } else {
       return articles.map((article, k) => {
         const { title, author, year_of_pub, journal_name, volume_number } = article
