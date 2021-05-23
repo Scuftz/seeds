@@ -8,6 +8,7 @@ import ShowArticleDetails from './components/ShowArticleDetails';
 import UpdateArticleInfo from './components/UpdateArticleInfo';
 import Analyst from './components/Analyst';
 import SearchArticle from './components/SearchArticle'
+import SearchArticleDetails from './components/SearchArticleDetails'
 import ArticleResult from './components/ArticleResult';
 
 class App extends Component {
@@ -15,16 +16,14 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path='/moderation' component={ShowArticleList} />
-          <Route path='/submit-article' component={SubmitArticle} />
-          <Route path='/analyst' component={Analyst} />
           <Route path='/article-result/search/:id' component={ArticleResult} />
           <Route path='/edit-article/:id' component={UpdateArticleInfo} />
+          <Route path='/search-article/:id' component={SearchArticleDetails} />
           <Route path='/show-article/:id' component={ShowArticleDetails} />
-
-          <Route path='/' component={SearchArticle} />
-          
-
+          <Route path='/moderation' component={ShowArticleList} />
+          <Route path='/submit-article' component={SubmitArticle} />
+          <Route path='/analyst' component={Analyst} />
+          <Route exact path='/' component={SearchArticle} />
         </div>
       </Router>
     );
