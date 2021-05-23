@@ -31,7 +31,8 @@ class ArticleResult extends Component {
   };
   
   btnClick(){
-    console.log("Buton click!");
+    alert("Hello");
+    console.log("Btn Click");
   };
 
   renderTableData() {
@@ -42,11 +43,12 @@ class ArticleResult extends Component {
       // articleList = "there is no article record!";
     } else {
       return articles.map((article, k) => {
-        const { title, author, year_of_pub, journal_name, volume_number } = article
-        console.log("Start TableData");
+        const { _id, title, author, year_of_pub, journal_name, volume_number } = article
         return (
            <tr key={title}>
-              <td><button onClick={() => this.btnClick}>{title}</button></td>
+              {/* <td><button onClick={this.btnClick}>{title}</button></td> */}
+              {/* <td><Link to={`/search-article/${_id}`} className="btn btn-primary">{title}</Link></td> */}
+              <td><Link to={{pathname: `/search-article/${_id}`, state: { prevPath: window.location.pathname }}}>{title}</Link></td>
               <td>{author}</td>
               <td>{year_of_pub}</td>
               <td>{journal_name}</td>
