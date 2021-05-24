@@ -18,11 +18,12 @@ class SearchArticle extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //Search submit onClick event
   onSubmit = e => {
-    e.preventDefault();
-    console.log("SEARCH STATE: " + this.state.search);
-    
+    e.preventDefault();    
     const query = {};
+
+    //if else statement to handle nulls and change them into empty strings to code doesn't break
     if(this.state.search == null)
       query.keywords = "";
     else
@@ -48,7 +49,7 @@ class SearchArticle extends Component {
     else
       query.journal_name = this.state.journal_name;
 
-    this.props.history.push('article-result', query);   
+    this.props.history.push('article-result', query); //sending the search query  
   };
 
   render() {
@@ -65,6 +66,7 @@ class SearchArticle extends Component {
             </div>
           </div>
 
+          {/* Navigation Bar */}
           <div className="rowC">
             <Link to="/submit-article" className="btn btn-outline-warning">
                 Submit An Article
@@ -84,11 +86,13 @@ class SearchArticle extends Component {
           </div>
 
           <br/>
+
+          {/* SEarch Form */}
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
 
             <div className='form-group'>
-              <input
+              <input //keywords
                 type='text'
                 name='search'
                 placeholder='Keywords'
@@ -96,7 +100,7 @@ class SearchArticle extends Component {
                 onChange={this.onChange}
               />
               <br/>
-              <input
+              <input //title
                 type='text'
                 name='title'
                 placeholder='Title'
@@ -104,7 +108,7 @@ class SearchArticle extends Component {
                 onChange={this.onChange}
               />
               <br/>
-              <input
+              <input //author
                 type='text'
                 name='author'
                 placeholder='Author'
@@ -112,7 +116,7 @@ class SearchArticle extends Component {
                 onChange={this.onChange}
               />
               <br/>
-              <input
+              <input //year
                 type='text'
                 name='year'
                 placeholder='Year'
@@ -120,7 +124,7 @@ class SearchArticle extends Component {
                 onChange={this.onChange}
               />
               <br/>
-              <input
+              <input //journal name
                 type='text'
                 name='journal_name'
                 placeholder='Journal Name'
@@ -129,14 +133,13 @@ class SearchArticle extends Component {
               />
             </div>
 
-            <input
+            <input //submission button
                 type="submit"
                 className="btn btn-outline-warning btn-block mt-4"
                 onClick = { this.onSubmit }
             />
             </form>
           </div>
-
         </div>
       </div>
     );

@@ -9,16 +9,13 @@ class ArticleResult extends Component {
     this.state = {
       articles: []
     };
-    this.btnClick = this.btnClick.bind(this);
   }
 
   componentDidMount() {
     const query = this.props.location.state;
-    // console.log(this.props.match.params);
-    console.log(this.props.location.state);
 
     axios
-      .post('http://localhost:8082/api/articles/search', query)
+      .post('http://localhost:8082/api/articles/search', query) //get all the articles that match the query parameters
       .then(res => {
         this.setState({
           articles: res.data
@@ -28,15 +25,11 @@ class ArticleResult extends Component {
         console.log('Error from ShowArticleList');
       })
   };
-  
-  btnClick(){
-    alert("Hello");
-    console.log("Btn Click");
-  };
 
   renderTableData() {
     const articles = this.state.articles;
-
+    const query = this.props.location.state;
+    //Display the articles found from the query with their details
     if(!articles) {
       console.log("No Articles Found");
     } else {
@@ -44,7 +37,7 @@ class ArticleResult extends Component {
         const { _id, title, author, year_of_pub, journal_name, volume_number } = article
         return (
            <tr key={title}>
-              <td><Link to={{pathname: `/search-article/${_id}`, state: { prevPath: window.location.pathname }}}>{title}</Link></td>
+              <td><Link to={{pathname: `/search-article/${_id}`, state: { prevPath: window.location.pathname, inputQuery: query }}}>{title}</Link></td> {/* Linked to view article text */}
               <td>{author}</td>
               <td>{year_of_pub}</td>
               <td>{journal_name}</td>
@@ -55,6 +48,7 @@ class ArticleResult extends Component {
     }
   }
 
+  //Rendering the table to show search results
   renderTableHeader() {
     return(
       [
@@ -76,6 +70,7 @@ class ArticleResult extends Component {
               <br/>
             </div>
 
+            {/* Navigation Bar */}
             <div className="rowC">
                 <Link to="/submit-article" className="btn btn-outline-warning">
                   Submit An Article
@@ -96,6 +91,7 @@ class ArticleResult extends Component {
           </div>
           <br/>
 
+          {/* Call to render table */}
           <div className="tableList">
               <table id="articles">
                 <tbody>

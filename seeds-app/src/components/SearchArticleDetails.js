@@ -13,7 +13,7 @@ class SearchArticleDetails extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id) //get the article details of a single article
       .then(res => {
         this.setState({
           article: res.data
@@ -25,44 +25,37 @@ class SearchArticleDetails extends Component {
   };
 
   render() {
-
+    //Display the information in a table format
     const article = this.state.article;
     let ArticleItem = <div>
       <table className="table table-hover table-dark">
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Title</td>
+            <th scope="row">Title</th>
             <td>{ article.title }</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Author</td>
+            <th scope="row">Author</th>
             <td>{ article.author }</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td>Year Of Pub</td>
+            <th scope="row">Year of Pub</th>
             <td>{ article.year_of_pub }</td>
           </tr>
           <tr>
-            <th scope="row">4</th>
-            <td>Journal Name</td>
+            <th scope="row">Journal Name</th>
             <td>{ article.journal_name }</td>
           </tr>
           <tr>
-            <th scope="row">5</th>
-            <td>Volume Number</td>
+            <th scope="row">Vol. Number</th>
             <td>{ article.volume_number }</td>
           </tr>
           <tr>
-            <th scope="row">6</th>
-            <td>DOI</td>
+            <th scope="row">DOI</th>
             <td>{ article.doi }</td>
           </tr>
           <tr>
-            <th scope="row">7</th>
-            <td>Article</td>
+            <th scope="row">Article</th>
             <td>{ article.article_text }</td>
           </tr>
         </tbody>
@@ -75,8 +68,8 @@ class SearchArticleDetails extends Component {
           <div className="row">
             <div className="col-md-10 m-auto">
               <br /> <br />
-              <Link to={{pathname: `${this.props.location.state.prevPath}`}} className="btn btn-outline-warning float-left">
-                  Back to Search
+              <Link to={{pathname: `${this.props.location.state.prevPath}`, state: this.props.location.state.inputQuery}} className="btn btn-outline-warning float-left">
+                  Back to Search {/* Return to search page */}
               </Link>
             </div>
             <br />
@@ -89,7 +82,7 @@ class SearchArticleDetails extends Component {
             </div>
           </div>
           <div>
-            { ArticleItem }
+            { ArticleItem } {/* Displaying the article details*/}
           </div>
         </div>
       </div>

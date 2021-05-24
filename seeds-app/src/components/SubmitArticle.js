@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
-
 class SubmitArticle extends Component {
   constructor() {
     super();
@@ -24,6 +23,7 @@ class SubmitArticle extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //When submitting article, store its details and set its status to PendingModeration
   onSubmit = e => {
     e.preventDefault();
 
@@ -40,7 +40,7 @@ class SubmitArticle extends Component {
     };
 
     axios
-      .post('http://localhost:8082/api/articles', data)
+      .post('http://localhost:8082/api/articles', data) //send data to database then empty form details
       .then(res => {
         this.setState({
           title:'',
@@ -80,7 +80,7 @@ class SubmitArticle extends Component {
               <form noValidate onSubmit={this.onSubmit}>
                 <br />
                 <div className='form-group'>
-                  <input
+                  <input //Title
                     type='text'
                     placeholder='Title of Article'
                     name='title'
@@ -91,7 +91,7 @@ class SubmitArticle extends Component {
                 </div>
 
                 <div className='form-group'>
-                  <input
+                  <input //Author
                     type='text'
                     placeholder='Author'
                     name='author'
@@ -102,7 +102,7 @@ class SubmitArticle extends Component {
                 </div>
 
                 <div className='form-group'>
-                  <input
+                  <input //Year of Publication
                     type='number'
                     placeholder='Year of Publication'
                     name='year_of_pub'
@@ -113,7 +113,7 @@ class SubmitArticle extends Component {
                 </div>
 
                 <div className='form-group'>
-                  <input
+                  <input //Journal Name
                     type='text'
                     placeholder='Journal Name'
                     name='journal_name'
@@ -123,7 +123,7 @@ class SubmitArticle extends Component {
                   />
                 </div>
                 <div className='form-group'>
-                  <input
+                  <input //Volume Number
                     type='number'
                     placeholder='Volume Number'
                     name='volume_number'
@@ -133,7 +133,7 @@ class SubmitArticle extends Component {
                   />
                 </div>
                 <div className='form-group'>
-                  <input
+                  <input //DOI
                     type='text'
                     placeholder='DOI'
                     name='doi'
@@ -142,7 +142,7 @@ class SubmitArticle extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <input
+                <input //Submit button
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4"
                 />
