@@ -16,10 +16,16 @@ class ArticleResult extends Component {
   }
 
   componentDidMount() {
+    const query = this.props.location.state;
+    // console.log(this.props.match.params);
+    console.log(this.props.location.state);
+
     axios
+      .post('http://localhost:8082/api/articles/search', query)
       // .get('http://localhost:8082/api/articles/search/Python')
       // .get('http://localhost:8082/api/articles/search/?asd=TDD') //add param from search bar
-      .get('http://localhost:8082/api/articles/search/' + this.props.match.params.id) //this 
+      // .get('http://localhost:8082/api/articles/search/' + this.props.match.params.search + '/' + this.props.match.params.title + '/'
+      //       + this.props.match.params.author + '/' + this.props.match.params.year + '/' + this.props.match.params.journal_name)
       .then(res => {
         this.setState({
           articles: res.data
