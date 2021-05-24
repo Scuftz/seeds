@@ -16,13 +16,18 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route path='/article-result/search/:id' component={ArticleResult} />
+          <Route path='/article-result' component={ArticleResult} />
           <Route path='/edit-article/:id' component={UpdateArticleInfo} />
           <Route path='/search-article/:id' component={SearchArticleDetails} />
           <Route path='/show-article/:id' component={ShowArticleDetails} />
           <Route path='/moderation' component={ShowArticleList} />
           <Route path='/submit-article' component={SubmitArticle} />
           <Route path='/analyst' component={Analyst} />
+          
+          {/* <Route path='/article-result' render={(props) => (
+            // <Dashboard {...props} isAuthed={true} />)}/>
+            <ArticleResult {... props} />)}/> */}
+
           <Route exact path='/' component={SearchArticle} />
         </div>
       </Router>

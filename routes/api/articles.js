@@ -34,7 +34,8 @@ router.get('/', (req, res) => {
   // @route GET api/articles
   // @description Search for articles
   // @access Public
-   router.get('/search/:search', (req, res) => {
+  //  router.get('/search/:search', (req, res) => {
+    router.get('/abc/:search', (req, res) => {
     let word = req.params.search;    
     let typeRequest = "Live";
 
@@ -47,6 +48,63 @@ router.get('/', (req, res) => {
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
   });
+
+  // @route POST api/articles
+  // @description Upgraded search function
+  // @access Public
+  ///:keywords/:title/:author/:year/:journal_name
+  router.post('/search', (req, res) => {
+    
+    console.log(req.body);
+    // res.json({hello: "world"});
+
+    const emptyField = new RegExp("[\w\W]*");
+    const emptyNumber = new RegExp("[0-9]{4}");
+    const typeRequest = "Live";
+    const query = {};
+
+    if(req.body.keywords != "")
+      query.keywords = {$regex: req.body.keywords, $options: "$i"};
+
+    if(req.body.title != "")
+      query.title = {$regex: req.body.title, $options: "$i"};
+    
+    if(req.body.author != "")
+      query.author = {$regex: req.body.author, $options: "$i"};
+
+    if(req.body.year != "")
+      query.year = {$regex: req.body.year, $options: "$i"};
+
+    if(req.body.journal_name != "")
+      query.journal_name = {$regex: req.body.journal_name, $options: "$i"};
+
+    // console.log(query);
+
+    // //store queries into map, use map queries in $cond/$and
+    Article.find(
+      query
+      // $and: [
+      //   { "process_status" : { $eq: typeRequest }},
+      //   { "keywords" : {$regex: inputKeywords, $options: "$i"}},
+      //   { "title" : {$regex: inputTitle, $options: "$i"}},
+      //   { "author" : {$regex: inputAuthor, $options: "$i"}},
+      //   // { "year_of_pub" : {$regex: inputYear}},
+      //   { "journal_name" : {$regex: inputJournalName, $options: "$i"}}
+      // ]
+
+      // $and: [
+      //   { "process_status" : { $eq: typeRequest }},
+      //   { "keywords" : {$regex: emptyField, $options: "$i"}},
+      //   { "title" : {$regex: "TDD Guide", $options: "$i"}},
+      //   { "author" : {$regex: emptyField, $options: "$i"}},
+      //   // { "year_of_pub" : {$regex: inputYear}},
+        // { "journal_name" : {$regex: emptyField, $options: "$i"}}
+      // ]
+    )
+      .then(article => res.json(article))
+      .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));
+  });
+
 
   //get article by id
   router.get('/article/:id', (req, res) => {

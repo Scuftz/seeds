@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import '../App.css';
 
 class SearchArticle extends Component {
@@ -7,6 +7,10 @@ class SearchArticle extends Component {
     super();
     this.state = {
       search:'',
+      title:'',
+      author:'',
+      year:'',
+      journal_name:''
     };
   }
 
@@ -17,19 +21,36 @@ class SearchArticle extends Component {
   onSubmit = e => {
     e.preventDefault();
     console.log("SEARCH STATE: " + this.state.search);
-    // this.props.history.push(`/article-result/search/${this.state.search}`);
-    this.props.history.push('article-result/search/' + this.state.search);
-        // this.props.history.push(`/article-result/search/?search=${this.state.search}`);
+    
+    const query = {};
+    if(this.state.search == null)
+      query.keywords = "";
+    else
+      query.keywords = this.state.search;
 
-    // this.props.history.push('/article-result');
-    // axios
-    //   .get('http://localhost:8082/api/articles/search')
-    //   .then(res => {
-    //   })
-    //   .catch(err => {
-    //     console.log("Error in SubmitArticle!");
-    //   })
-    };
+    if(this.state.title == null)
+      query.title = "";
+    else
+      query.title = this.state.title;
+
+    if(this.state.author == null)
+      query.author = "";
+    else
+      query.author = this.state.author;
+
+    if(this.state.year == null)
+      query.year = "";
+    else
+      query.year = this.state.year;
+
+    if(this.state.journal_name == null)
+      query.journal_name = "";
+    else
+      query.journal_name = this.state.journal_name;
+
+    this.props.history.push('article-result', query);   
+    // this.props.history.push('article-result/search/' + this.state.search + '/' + this.state.title + '/' + this.state.author + '/' + this.state.year + '/' + this.state.journal_name);
+  };
 
   render() {
     return (
@@ -73,7 +94,38 @@ class SearchArticle extends Component {
                 name='search'
                 placeholder='Keywords'
                 className='form-control'
-                // value={this.state.search}
+                onChange={this.onChange}
+              />
+              <br/>
+              <input
+                type='text'
+                name='title'
+                placeholder='Title'
+                className='form-control'
+                onChange={this.onChange}
+              />
+              <br/>
+              <input
+                type='text'
+                name='author'
+                placeholder='Author'
+                className='form-control'
+                onChange={this.onChange}
+              />
+              <br/>
+              <input
+                type='text'
+                name='year'
+                placeholder='Year'
+                className='form-control'
+                onChange={this.onChange}
+              />
+              <br/>
+              <input
+                type='text'
+                name='journal_name'
+                placeholder='Journal Name'
+                className='form-control'
                 onChange={this.onChange}
               />
             </div>
@@ -92,4 +144,4 @@ class SearchArticle extends Component {
   }
 }
 
-export default SearchArticle;
+export default withRouter(SearchArticle);
