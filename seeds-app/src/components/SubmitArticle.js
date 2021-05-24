@@ -78,18 +78,7 @@ class SubmitArticle extends Component {
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                {/* <div className='form-group'>
-                  <input
-                    type='number'
-                    placeholder='Article ID'
-                    name='article_id'
-                    className='form-control'
-                    value={this.state.article_id}
-                    onChange={this.onChange}
-                  />
-                </div> */}
                 <br />
-
                 <div className='form-group'>
                   <input
                     type='text'
@@ -153,16 +142,6 @@ class SubmitArticle extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                {/* <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Process Status'
-                    name='process_status'
-                    className='form-control'
-                    value={this.state.process_status}
-                    onChange={this.onChange}
-                  /> */}
-                {/* </div> */}
                 <input
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4"

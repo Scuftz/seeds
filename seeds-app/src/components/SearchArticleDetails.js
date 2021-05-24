@@ -12,11 +12,9 @@ class SearchArticleDetails extends Component {
   }
 
   componentDidMount() {
-    console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
       .then(res => {
-        // console.log("Print-searchArticleDetails-API-response: " + res.data);
         this.setState({
           article: res.data
         })
@@ -78,7 +76,6 @@ class SearchArticleDetails extends Component {
             <div className="col-md-10 m-auto">
               <br /> <br />
               <Link to={{pathname: `${this.props.location.state.prevPath}`}} className="btn btn-outline-warning float-left">
-              {/* <Link to="/moderation" className="btn btn-outline-warning float-left"> */}
                   Back to Search
               </Link>
             </div>

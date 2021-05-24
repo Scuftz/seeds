@@ -20,11 +20,9 @@ class UpdateArticleInfo extends Component {
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8082/api/articles/'+this.props.match.params.id)
       .then(res => {
-        // this.setState({...this.state, article: res.data})
         this.setState({
           title: res.data.title,
           author: res.data.author,
@@ -56,7 +54,7 @@ class UpdateArticleInfo extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: "Live",//this.state.process_status,
+      process_status: "Live",
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };
@@ -64,7 +62,6 @@ class UpdateArticleInfo extends Component {
     axios
       .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
       .then(res => {
-        // this.props.history.push('/show-article/'+this.props.match.params.id);
         this.props.history.push('/analyst');
       })
       .catch(err => {
@@ -115,15 +112,6 @@ class UpdateArticleInfo extends Component {
                 value = {this.state.article_text}
                 onChange={this.onChange}
               />
-
-              {/* <input
-                type='text'
-                placeholder='Article Text'
-                name='article_text'
-                className='form-control'
-                value={this.state.article_text}
-                onChange={this.onChange}
-              /> */}
             </div>
             <button type="submit" className="btn btn-outline-info btn-lg btn-block">Publish Article</button>
             </form>

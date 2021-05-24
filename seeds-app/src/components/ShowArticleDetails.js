@@ -12,11 +12,9 @@ class ShowArticleDetails extends Component {
   }
 
   componentDidMount() {
-    console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
       .then(res => {
-        // console.log("Print-showArticleDetails-API-response: " + res.data);
         this.setState({
           article: res.data
         })
@@ -47,7 +45,7 @@ class ShowArticleDetails extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: "PendingAnalyst",//this.state.process_status,
+      process_status: "PendingAnalyst",
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };
@@ -55,7 +53,6 @@ class ShowArticleDetails extends Component {
     axios
       .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
       .then(res => {
-        // this.props.history.push('/show-article/'+this.props.match.params.id);
         this.props.history.push('/moderation');
       })
       .catch(err => {
@@ -68,14 +65,6 @@ class ShowArticleDetails extends Component {
     const article = this.state.article;
     let ArticleItem = <div>
       <table className="table table-hover table-dark">
-        {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
         <tbody>
           <tr>
             <th scope="row">1</th>
@@ -141,17 +130,9 @@ class ShowArticleDetails extends Component {
 
             <div className="col-md-6">
               <button type="button" className="btn btn-outline-info btn-lg btn-block" onClick={this.onAccept}>Accept Article</button>
-              {/* <Link to={`/edit-article/${article._id}`} className="btn btn-outline-info btn-lg btn-block">
-                    Accept Article
-              </Link> */}
               <br />
             </div>
-
           </div>
-            {/* <br />
-            <button type="button" class="btn btn-outline-info btn-lg btn-block">Edit Article</button>
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Article</button> */}
-
         </div>
       </div>
     );

@@ -23,8 +23,6 @@ router.get('/', (req, res) => {
   // @description Get single article by status
   // @access Public
   router.get('/:status', (req, res) => {
-    //Article.findById(req.params.id)
-    //Article.find( { "process_status": { $eq: "PendingModeration" } } )
     let typeRequest = req.params.status;
     Article.find( { "process_status": { $eq: typeRequest } } )
       .then(article => res.json(article))
@@ -56,8 +54,6 @@ router.get('/', (req, res) => {
   router.post('/search', (req, res) => {
     
     console.log(req.body);
-    // res.json({hello: "world"});
-
     const emptyField = new RegExp("[\w\W]*");
     const emptyNumber = new RegExp("[0-9]{4}");
     const typeRequest = "Live";
@@ -78,28 +74,8 @@ router.get('/', (req, res) => {
     if(req.body.journal_name != "")
       query.journal_name = {$regex: req.body.journal_name, $options: "$i"};
 
-    // console.log(query);
-
-    // //store queries into map, use map queries in $cond/$and
     Article.find(
       query
-      // $and: [
-      //   { "process_status" : { $eq: typeRequest }},
-      //   { "keywords" : {$regex: inputKeywords, $options: "$i"}},
-      //   { "title" : {$regex: inputTitle, $options: "$i"}},
-      //   { "author" : {$regex: inputAuthor, $options: "$i"}},
-      //   // { "year_of_pub" : {$regex: inputYear}},
-      //   { "journal_name" : {$regex: inputJournalName, $options: "$i"}}
-      // ]
-
-      // $and: [
-      //   { "process_status" : { $eq: typeRequest }},
-      //   { "keywords" : {$regex: emptyField, $options: "$i"}},
-      //   { "title" : {$regex: "TDD Guide", $options: "$i"}},
-      //   { "author" : {$regex: emptyField, $options: "$i"}},
-      //   // { "year_of_pub" : {$regex: inputYear}},
-        // { "journal_name" : {$regex: emptyField, $options: "$i"}}
-      // ]
     )
       .then(article => res.json(article))
       .catch(err => res.status(404).json({ noarticlefound: 'No Article found' }));

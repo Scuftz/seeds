@@ -23,11 +23,6 @@ class App extends Component {
           <Route path='/moderation' component={ShowArticleList} />
           <Route path='/submit-article' component={SubmitArticle} />
           <Route path='/analyst' component={Analyst} />
-          
-          {/* <Route path='/article-result' render={(props) => (
-            // <Dashboard {...props} isAuthed={true} />)}/>
-            <ArticleResult {... props} />)}/> */}
-
           <Route exact path='/' component={SearchArticle} />
         </div>
       </Router>

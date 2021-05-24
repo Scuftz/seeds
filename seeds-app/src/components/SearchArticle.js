@@ -49,7 +49,6 @@ class SearchArticle extends Component {
       query.journal_name = this.state.journal_name;
 
     this.props.history.push('article-result', query);   
-    // this.props.history.push('article-result/search/' + this.state.search + '/' + this.state.title + '/' + this.state.author + '/' + this.state.year + '/' + this.state.journal_name);
   };
 
   render() {
