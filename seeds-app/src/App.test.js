@@ -11,20 +11,20 @@ test('renders search page', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// test('renders analyst page', () => {
-//   render(<BrowserRouter><Analyst/></BrowserRouter>);
-//   const linkElement = screen.getByText(/Analyst Page/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+test('renders analyst page', () => {
+  render(<BrowserRouter><Analyst/></BrowserRouter>);
+  const linkElement = screen.getByText(/Analyst Page/i);
+  expect(linkElement).toBeInTheDocument();
+});
 
-// test('renders moderator page', () => {
-//   render(<BrowserRouter><ShowArticleList/></BrowserRouter>);
-//   const linkElement = screen.getByText(/Moderator Page/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+test('renders moderator page', () => {
+  render(<BrowserRouter><ShowArticleList/></BrowserRouter>);
+  const linkElement = screen.getByText(/Moderator Page/i);
+  expect(linkElement).toBeInTheDocument();
+});
 
-// test('renders submit page', () => {
-//   render(<BrowserRouter><SubmitArticle/></BrowserRouter>);
-//   const linkElement = screen.getByText(/Submit Article/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+test('renders submit page', () => {
+  render(<BrowserRouter><SubmitArticle/></BrowserRouter>);
+  const linkElement = screen.getByText(/Submit Article/i);
+  expect(linkElement).toBeInTheDocument();
+});
