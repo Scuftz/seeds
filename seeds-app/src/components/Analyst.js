@@ -14,7 +14,7 @@ class Analyst extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/PendingAnalyst')
+      .get('http://localhost:8082/api/articles/PendingAnalyst') //Get all the articles that are pending analysis
       .then(res => {
         this.setState({
           articles: res.data
@@ -28,11 +28,10 @@ class Analyst extends Component {
 
   render() {
     const articles = this.state.articles;
-    console.log("PrintArticle: " + articles);
     let articleList;
 
     if(!articles) {
-      articleList = "there is no article record!";
+      articleList = "There is no article record!";
     } else {
       articleList = articles.map((article, k) =>
         <ArticleCard article={article} key={k} />
@@ -45,10 +44,11 @@ class Analyst extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Analyst</h2>
+              <h2 className="display-4 text-center">Analyst Page</h2>
               <br/>
             </div>
 
+            {/* Navigation Bar */}
             <div className="rowC">
                 <Link to="/submit-article" className="btn btn-outline-warning">
                   Submit An Article
@@ -70,7 +70,7 @@ class Analyst extends Component {
           <br/>
 
           <div className="list">
-                {articleList}
+                {articleList} {/* Display the articles found */}
           </div>
         </div>
       </div>

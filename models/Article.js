@@ -1,12 +1,6 @@
-// models/Article.js
-
 const mongoose = require('mongoose');
 
 const ArticleSchema = new mongoose.Schema({
-  // article_id: {
-  //   type: Number,
-  //   required: true
-  // },
   title: {
     type: String,
     required: true

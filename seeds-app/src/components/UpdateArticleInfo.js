@@ -20,12 +20,10 @@ class UpdateArticleInfo extends Component {
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/articles/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/'+this.props.match.params.id) //get the article whose status will be updated
       .then(res => {
-        // this.setState({...this.state, article: res.data})
-        this.setState({
+        this.setState({ //store the new data inside
           title: res.data.title,
           author: res.data.author,
           year_of_pub: res.data.year_of_pub,
@@ -56,22 +54,20 @@ class UpdateArticleInfo extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: "Live",//this.state.process_status,
+      process_status: "Live",
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };
 
     axios
-      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
+      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data) //send updated data in database
       .then(res => {
-        // this.props.history.push('/show-article/'+this.props.match.params.id);
-        this.props.history.push('/analyst');
+        this.props.history.push('/analyst'); //return to analyst page
       })
       .catch(err => {
         console.log("Error in UpdateArticleInfo!");
       })
   };
-
 
   render() {
     return (
@@ -81,7 +77,7 @@ class UpdateArticleInfo extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/analyst" className="btn btn-outline-warning float-left">
-                  Return to Analyst
+                  Return to Analyst {/* Link back to Analyst Page */}
               </Link>
             </div>
             <div className="col-md-8 m-auto">
@@ -94,9 +90,8 @@ class UpdateArticleInfo extends Component {
 
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
-
             <div className='form-group'>
-              <input
+              <input //Keywords to be added
                 type='text'
                 placeholder='Keywords'
                 name='keywords'
@@ -108,27 +103,17 @@ class UpdateArticleInfo extends Component {
             <br />
 
             <div className='form-group'>
-              <textarea
+              <textarea //Article text to be added
                 placeholder='Article Text'
                 name='article_text'
                 className='form-control'
                 value = {this.state.article_text}
                 onChange={this.onChange}
               />
-
-              {/* <input
-                type='text'
-                placeholder='Article Text'
-                name='article_text'
-                className='form-control'
-                value={this.state.article_text}
-                onChange={this.onChange}
-              /> */}
             </div>
             <button type="submit" className="btn btn-outline-info btn-lg btn-block">Publish Article</button>
             </form>
           </div>
-
         </div>
       </div>
     );

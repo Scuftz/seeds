@@ -14,7 +14,7 @@ class ShowArticleList extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/PendingModeration')
+      .get('http://localhost:8082/api/articles/PendingModeration') //Get all articles pending moderation
       .then(res => {
         this.setState({
           articles: res.data
@@ -28,7 +28,6 @@ class ShowArticleList extends Component {
 
   render() {
     const articles = this.state.articles;
-    console.log("PrintArticle: " + articles);
     let articleList;
 
     if(!articles) {
@@ -45,10 +44,11 @@ class ShowArticleList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Moderator</h2>
+              <h2 className="display-4 text-center">Moderator Page</h2>
               <br/>
             </div>
 
+            {/* Navigation Bar */}
             <div className="rowC">
                 <Link to="/submit-article" className="btn btn-outline-warning">
                   Submit An Article
@@ -70,7 +70,7 @@ class ShowArticleList extends Component {
           <br/>
 
           <div className="list">
-                {articleList}
+                {articleList} {/* Display the reutrned articles */}
           </div>
         </div>
       </div>

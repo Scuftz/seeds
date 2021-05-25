@@ -12,11 +12,9 @@ class ShowArticleDetails extends Component {
   }
 
   componentDidMount() {
-    console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/articles/article/'+this.props.match.params.id) //get the details of a specific article
       .then(res => {
-        // console.log("Print-showArticleDetails-API-response: " + res.data);
         this.setState({
           article: res.data
         })
@@ -28,7 +26,7 @@ class ShowArticleDetails extends Component {
 
   onDeleteClick (id) {
     axios
-      .delete('http://localhost:8082/api/articles/'+id)
+      .delete('http://localhost:8082/api/articles/'+id) //delete an article from the database (moderater declined article)
       .then(res => {
         this.props.history.push("/moderation");
       })
@@ -37,6 +35,7 @@ class ShowArticleDetails extends Component {
       })
   };
 
+  //approve an article to the PendingAnalyst phase where the analyst will look at it
   onAccept = e => {
     e.preventDefault();
 
@@ -47,15 +46,14 @@ class ShowArticleDetails extends Component {
       journal_name: this.state.journal_name,
       volume_number: this.state.volume_number,
       doi: this.state.doi,
-      process_status: "PendingAnalyst",//this.state.process_status,
+      process_status: "PendingAnalyst",
       article_text: this.state.article_text,
       keywords: this.state.keywords
     };
 
     axios
-      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data)
+      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data) //return to moderation page after approving
       .then(res => {
-        // this.props.history.push('/show-article/'+this.props.match.params.id);
         this.props.history.push('/moderation');
       })
       .catch(err => {
@@ -64,47 +62,33 @@ class ShowArticleDetails extends Component {
   };
 
   render() {
-
+    //Show article details in a table
     const article = this.state.article;
     let ArticleItem = <div>
       <table className="table table-hover table-dark">
-        {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Title</td>
+            <th scope="row">Title</th>
             <td>{ article.title }</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Author</td>
+            <th scope="row">Author</th>
             <td>{ article.author }</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td>Year Of Pub</td>
+            <th scope="row">Year of Pub</th>
             <td>{ article.year_of_pub }</td>
           </tr>
           <tr>
-            <th scope="row">4</th>
-            <td>Journal Name</td>
+            <th scope="row">Journal Name</th>
             <td>{ article.journal_name }</td>
           </tr>
           <tr>
-            <th scope="row">5</th>
-            <td>Volume Number</td>
+            <th scope="row">Vol. Number</th>
             <td>{ article.volume_number }</td>
           </tr>
           <tr>
-            <th scope="row">6</th>
-            <td>DOI</td>
+            <th scope="row">DOI</th>
             <td>{ article.doi }</td>
           </tr>
         </tbody>
@@ -135,23 +119,15 @@ class ShowArticleDetails extends Component {
           </div>
 
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6"> {/* Button to decline article */}
               <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,article._id)}>Decline Article</button><br />
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6"> {/* Button to accept article */}
               <button type="button" className="btn btn-outline-info btn-lg btn-block" onClick={this.onAccept}>Accept Article</button>
-              {/* <Link to={`/edit-article/${article._id}`} className="btn btn-outline-info btn-lg btn-block">
-                    Accept Article
-              </Link> */}
               <br />
             </div>
-
           </div>
-            {/* <br />
-            <button type="button" class="btn btn-outline-info btn-lg btn-block">Edit Article</button>
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Article</button> */}
-
         </div>
       </div>
     );
