@@ -44,7 +44,7 @@ class Analyst extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Analyst</h2>
+              <h2 className="display-4 text-center">Analyst Page</h2>
               <br/>
             </div>
 
