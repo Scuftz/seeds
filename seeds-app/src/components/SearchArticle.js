@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 class SearchArticle extends Component {
@@ -146,4 +146,4 @@ class SearchArticle extends Component {
   }
 }
 
-export default withRouter(SearchArticle);
+export default SearchArticle;

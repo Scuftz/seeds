@@ -14,7 +14,8 @@ class ShowArticleList extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/PendingModeration') //Get all articles pending moderation
+      // .get('http://localhost:8082/api/articles/PendingModeration') //Get all articles pending moderation
+      .get('https://ense701-seeds-app.herokuapp.com/api/articles/PendingModeration/')
       .then(res => {
         this.setState({
           articles: res.data
@@ -44,7 +45,7 @@ class ShowArticleList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Moderator Page</h2>
+              <h2 className="display-4 text-center">Moderator</h2>
               <br/>
             </div>
 
