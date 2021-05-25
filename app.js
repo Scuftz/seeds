@@ -20,8 +20,8 @@ app.use(express.json({ extended: false }));
 app.use('/api/articles', articles);
 app.use('/api/users', users);
 
-// app.use(express.static(__dirname+'/seeds-app/build'));
-// app.get('*', (req, res) => {res.sendFile(__dirname+'/seeds-app/build/index.html')});
+app.use(express.static(__dirname+'/seeds-app/build'));
+app.get('*', (req, res) => {res.sendFile(__dirname+'/seeds-app/build/index.html')});
 
 const port = process.env.PORT || 8082;
 
