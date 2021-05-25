@@ -2,7 +2,6 @@ const express = require('express');
 const connectDB = require('./config/db');
 var cors = require('cors');
 
-// INCORRECT VALUE CURRENTLY
 const users = require('./routes/api/users');
 const articles = require('./routes/api/articles');
 
