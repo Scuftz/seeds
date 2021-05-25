@@ -21,7 +21,8 @@ class UpdateArticleInfo extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/articles/'+this.props.match.params.id) //get the article whose status will be updated
+      // .get('http://localhost:8082/api/articles/'+this.props.match.params.id) //get the article whose status will be updated
+      .get('https://ense701-seeds-app.herokuapp.com/api/articles/'+this.props.match.params.id)
       .then(res => {
         this.setState({ //store the new data inside
           title: res.data.title,
@@ -60,7 +61,8 @@ class UpdateArticleInfo extends Component {
     };
 
     axios
-      .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data) //send updated data in database
+      // .put('http://localhost:8082/api/articles/'+this.props.match.params.id, data) //send updated data in database
+      .put('https://ense701-seeds-app.herokuapp.com/api/articles/'+this.props.match.params.id, data)
       .then(res => {
         this.props.history.push('/analyst'); //return to analyst page
       })
