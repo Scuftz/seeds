@@ -14,11 +14,9 @@ const ArticleSchema = new mongoose.Schema({
   },
   journal_name: {
     type: String,
-    required: true
   },
   volume_number: {
     type: Number,
-    required: true
   },
   doi: {
     type: String,

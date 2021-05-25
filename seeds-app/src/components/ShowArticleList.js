@@ -14,8 +14,7 @@ class ShowArticleList extends Component {
 
   componentDidMount() {
     axios
-      // .get('http://localhost:8082/api/articles/PendingModeration') //Get all articles pending moderation
-      .get('https://ense701-seeds-app.herokuapp.com/api/articles/PendingModeration/')
+      .get('https://ense701-seeds-app.herokuapp.com/api/articles/PendingModeration/') //Get all articles pending moderation
       .then(res => {
         this.setState({
           articles: res.data

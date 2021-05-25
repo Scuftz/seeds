@@ -40,8 +40,7 @@ class SubmitArticle extends Component {
     };
 
     axios
-      // .post('http://localhost:8082/api/articles', data) //send data to database then empty form details
-      .post('https://ense701-seeds-app.herokuapp.com/api/articles', data)
+      .post('https://ense701-seeds-app.herokuapp.com/api/articles', data) //send data to database then empty form details
       .then(res => {
         this.setState({
           title:'',
