@@ -45,7 +45,7 @@ class ShowArticleList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Moderator</h2>
+              <h2 className="display-4 text-center">Moderator Page</h2>
               <br/>
             </div>
 
